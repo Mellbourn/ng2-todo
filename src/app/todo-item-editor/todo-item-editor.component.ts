@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { TodoItem } from '../todo-item';
 
 @Component({
   selector: 'app-todo-item-editor',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-item-editor.component.scss']
 })
 export class TodoItemEditorComponent implements OnInit {
+  todoItemForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.todoItemForm = this.fb.group({
+      'text': [],
+      'done': [false]
+    });
   }
 
+  onSubmit(todoItem: TodoItem): void {
+    console.log(todoItem);
+  }
 }

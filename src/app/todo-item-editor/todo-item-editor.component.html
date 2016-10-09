@@ -1,1 +1,8 @@
 <h3>new item</h3>
+<form [formGroup]="todoItemForm" (ngSubmit)="onSubmit(todoItemForm.value)">
+  <label for="doneCheckBox">Done</label>
+  <input type="checkbox" id="doneCheckBox" ngControl="done">
+  <label for="textInput">Text:</label>
+  <input type="text" id="textInput" ngControl="text">
+  <button type="submit">Add</button>
+</form>
