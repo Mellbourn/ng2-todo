@@ -4,5 +4,5 @@
   <input type="checkbox" id="doneCheckBox" formControlName="done">
   <label for="textInput">Text:</label>
   <input type="text" id="textInput" formControlName="text" placeholder="description of your todo item">
-  <button type="submit">Add</button>
+  <button type="submit" [disabled]="!todoItemForm.valid">Add</button>
 </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoItem } from '../todo-item';
 import { TodoListService } from '../todo-list.service';
 
@@ -18,7 +18,7 @@ export class TodoItemEditorComponent implements OnInit {
 
   ngOnInit() {
     this.todoItemForm = this.fb.group({
-      text: [''],
+      text: ['', Validators.required],
       done: [false]
     });
   }
