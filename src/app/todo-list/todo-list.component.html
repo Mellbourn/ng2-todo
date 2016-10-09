@@ -1,3 +1,6 @@
 <ol>
-  <li *ngFor="let todoItem of todoItems">{{todoItem.text}}</li>
+  <li *ngFor="let todoItem of todoItems">
+    <input type="checkbox" [(ngModel)]="todoItem.done">
+    {{todoItem.text}}
+    </li>
 </ol>

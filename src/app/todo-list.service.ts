@@ -12,7 +12,7 @@ export class TodoListService {
 
   constructor() {
     this.todoItems = [
-      { text: 'create app', done: false },
+      { text: 'create app', done: true },
       { text: 'upload to github', done: false },
       { text: 'post app on social', done: false }
     ];
