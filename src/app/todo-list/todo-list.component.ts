@@ -16,4 +16,7 @@ export class TodoListComponent implements OnInit {
     this.todoItems = this.todoListService.getTodoList();
   }
 
+  onRemove(itemToRemove: TodoItem) {
+    this.todoListService.removeItem(itemToRemove);
+  }
 }

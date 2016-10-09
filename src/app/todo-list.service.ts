@@ -10,6 +10,11 @@ export class TodoListService {
     return this.todoItems;
   }
 
+  removeItem(itemToRemove: TodoItem) {
+    const indexOfItemToRemove = this.todoItems.lastIndexOf(itemToRemove);
+    this.todoItems.splice(indexOfItemToRemove, 1);
+  }
+
   constructor() {
     this.todoItems = [
       { text: 'create app', done: true },

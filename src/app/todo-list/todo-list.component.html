@@ -2,6 +2,7 @@
   <li *ngFor="let todoItem of todoItems">
     <input type="checkbox" [(ngModel)]="todoItem.done">
     {{todoItem.text}}
+    <button (click)="onRemove(todoItem)">Remove</button>
     </li>
 </ol>
 <app-todo-item-editor></app-todo-item-editor>
