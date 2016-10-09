@@ -1,14 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
 
 describe('App: Ng2Todo', () => {
   beforeEach(() => {
     TestBed
       .configureTestingModule({
-        imports: [AppModule],
+        declarations: [
+          AppComponent
+        ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA]
       });
   });
 
