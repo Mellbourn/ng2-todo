@@ -2,14 +2,14 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 
 describe('App: Ng2Todo', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    });
+    TestBed
+      .configureTestingModule({
+        imports: [AppModule],
+      });
   });
 
   it('should create the app', async(() => {
