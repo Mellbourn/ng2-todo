@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TestBed, async } from '@angular/core/testing';
 import { TodoListComponent } from './todo-list.component';
@@ -24,7 +24,7 @@ describe('Component: TodoList', () => {
         declarations: [
           TodoListComponent
         ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        schemas: [NO_ERRORS_SCHEMA],
         providers: [
           { provide: TodoListService, useValue: todoListServiceMock }
         ]
