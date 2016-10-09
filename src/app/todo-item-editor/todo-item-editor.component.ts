@@ -14,18 +14,17 @@ export class TodoItemEditorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private todoList: TodoListService) {
-    // TODO: move back to ngOnInit
-    this.todoItemForm = this.fb.group({
-      'text': [],
-      'done': [false]
-    });
   }
 
   ngOnInit() {
+    this.todoItemForm = this.fb.group({
+      text: [''],
+      done: [false]
+    });
   }
 
   onSubmit(todoItem: TodoItem): void {
-    console.log(todoItem);
     this.todoList.getTodoList().push({ text: todoItem.text, done: todoItem.done });
+    this.todoItemForm.reset();
   }
 }
