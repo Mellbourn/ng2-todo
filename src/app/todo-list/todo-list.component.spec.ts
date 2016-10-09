@@ -2,7 +2,7 @@
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { TodoListComponent } from './todo-list.component';
 import { FormsModule } from '@angular/forms';
 import { TodoListService } from '../todo-list.service';
@@ -54,21 +54,28 @@ describe('Component: TodoList', () => {
   });
 
   describe('onRemove', () => {
-    it('should remove todo item', () => {
+    let fixture: ComponentFixture<TodoListComponent>;
+    let firstTodoItem: TodoItem;
+    let expectedLength: number;
+
+    beforeEach(() => {
       // Arrange
-      let fixture = TestBed.createComponent(TodoListComponent);
-      let expectedLength = todoList.length - 1;
-      let firstTodoItem = todoList[0];
+      fixture = TestBed.createComponent(TodoListComponent);
+      expectedLength = todoList.length - 1;
+      firstTodoItem = todoList[0];
       fixture.detectChanges();
-      let compiled = fixture.debugElement.nativeElement;
       let firstRemoveButton = fixture.debugElement.query(By.css('ol li button'));
 
       // Act
       firstRemoveButton.triggerEventHandler('click', null);
       fixture.detectChanges();
+    });
 
-      // Assert
+    it('should call sevice to remove todo item', () => {
       expect(todoListServiceMock.removeItem).toHaveBeenCalledWith(firstTodoItem);
+    });
+
+    it('should remove todo item', () => {
       let items = fixture.debugElement.queryAll(By.css('ol li'));
       expect(items.length).toBe(expectedLength);
     });
