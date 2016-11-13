@@ -1,12 +1,15 @@
 import { ActionReducer, Action } from '@ngrx/store';
 import { TodoItem } from './todo-item';
-import {ADD_TODO_ITEM, REMOVE_TODO_ITEM} from './todo-list.action-creators';
+import { AppState } from './app-state';
+import { ADD_TODO_ITEM, REMOVE_TODO_ITEM } from './todo-list.action-creators';
 
-export interface AppState {
-  todoItems: TodoItem[];
-};
+const initalTodoItems: TodoItem[] = [
+  { text: 'create app', done: true },
+  { text: 'upload to github', done: false },
+  { text: 'post app on social', done: false }
+];
 
-export const todoListReducer: ActionReducer<AppState> = (state: AppState = { todoItems: [] }, action: Action) => {
+export const todoListReducer: ActionReducer<AppState> = (state: AppState = { todoItems: initalTodoItems }, action: Action) => {
   switch (action.type) {
     case ADD_TODO_ITEM:
       const itemToAdd: TodoItem = action.payload;

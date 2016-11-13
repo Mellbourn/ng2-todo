@@ -1,5 +1,5 @@
 <ol>
-  <li *ngFor="let todoItem of todoItems">
+  <li *ngFor="let todoItem of todoItems | async">
     <input type="checkbox" [(ngModel)]="todoItem.done">
     {{todoItem.text}}
     <button (click)="onRemove(todoItem)">Remove</button>
