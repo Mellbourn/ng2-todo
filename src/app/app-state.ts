@@ -1,5 +1,6 @@
 import { TodoItem } from './todo-item';
+import * as Immutable from 'immutable';
 
 export interface AppState {
-  todoItems: TodoItem[];
+  todoItems: Immutable.List<TodoItem>;
 };

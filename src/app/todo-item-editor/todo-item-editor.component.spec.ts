@@ -27,7 +27,7 @@ describe('Component: TodoItemEditor', () => {
 
   it('should push item on submit', () => {
     // Arrange
-    let todoList: TodoItem[] = [];
+    let todoList: Immutable.List<TodoItem> = [];
     let todoItem: TodoItem = { text: 'foo', done: false };
     (<jasmine.Spy>todoListMock.getTodoList).and.returnValue(todoList);
 

@@ -10,10 +10,10 @@ import { TodoItem } from '../todo-item';
 
 describe('Component: TodoList', () => {
   let todoListServiceMock: TodoListService;
-  let todoList: TodoItem[];
+  let todoList: Immutable.List<TodoItem>;
 
   beforeEach(() => {
-    todoListServiceMock = jasmine.createSpyObj('TodoListService', ['getTodoList', 'removeItem'])
+    todoListServiceMock = jasmine.createSpyObj('TodoListService', ['getTodoList', 'removeItem']);
     todoList = [{ text: 'foo', done: true }, { text: 'bar', done: false }];
     (<jasmine.Spy>todoListServiceMock.getTodoList).and.returnValue(todoList);
     (<jasmine.Spy>todoListServiceMock.removeItem).and.callFake((item: TodoItem) => {

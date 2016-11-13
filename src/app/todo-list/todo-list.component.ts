@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import * as Immutable from 'immutable';
 
 import { TodoListService } from '../todo-list.service';
 import { TodoItem } from '../todo-item';
@@ -10,7 +11,7 @@ import { TodoItem } from '../todo-item';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todoItems: Observable<TodoItem[]>;
+  todoItems: Observable<Immutable.List<TodoItem>>;
 
   constructor(private todoListService: TodoListService) { }
 
