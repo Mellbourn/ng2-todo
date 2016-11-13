@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
-import { todoListReducer } from './todo-list.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { todoListReducer } from './todo-list.reducer';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListService } from './todo-list.service';
@@ -21,7 +22,8 @@ import { TodoItemEditorComponent } from './todo-item-editor/todo-item-editor.com
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    StoreModule.provideStore({ todoItems: todoListReducer })
+    StoreModule.provideStore({ todoItems: todoListReducer }),
+    StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [
     TodoListService
