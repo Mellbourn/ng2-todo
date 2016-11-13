@@ -24,7 +24,7 @@ export class TodoListService {
   }
 
   constructor(private store: Store<Immutable.Map<string, Immutable.List<TodoItem>>>) {
-    this.todoItems = store.select(s => s.get('todoItems'));
+    this.todoItems = <Observable<Immutable.List<TodoItem>>>store.select('todoItems');
   }
 
 }
