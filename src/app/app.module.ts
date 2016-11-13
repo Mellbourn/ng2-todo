@@ -21,7 +21,7 @@ import { TodoItemEditorComponent } from './todo-item-editor/todo-item-editor.com
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    StoreModule.provideStore({ todoItems: todoListReducer })
+    StoreModule.provideStore(todoListReducer)
   ],
   providers: [
     TodoListService

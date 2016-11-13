@@ -3,7 +3,6 @@ import { TodoItem } from './todo-item';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
-import { AppState } from './app-state';
 import { addTodoItem, removeTodoItem } from './todo-list.action-creators';
 
 @Injectable()
@@ -23,8 +22,8 @@ export class TodoListService {
     this.store.dispatch(addTodoItem(itemToAdd));
   }
 
-  constructor(private store: Store<AppState>) {
-    this.todoItems = <Observable<TodoItem[]>>store.select('todoItems');
+  constructor(private store: Store<TodoItem[]>) {
+    this.todoItems = store;
   }
 
 }
