@@ -24,7 +24,7 @@ export class TodoListService {
   }
 
   constructor(private store: Store<AppState>) {
-    this.todoItems = <Observable<TodoItem[]>>store.select('todoItems');
+    this.todoItems = store.select(s => s.todoItems);
   }
 
 }
