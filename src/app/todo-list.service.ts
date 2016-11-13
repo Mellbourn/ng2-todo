@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 import * as Immutable from 'immutable';
 
-import { AppState } from './app-state';
 import { addTodoItem, removeTodoItem } from './todo-list.action-creators';
 
 @Injectable()
@@ -24,8 +23,8 @@ export class TodoListService {
     this.store.dispatch(addTodoItem(itemToAdd));
   }
 
-  constructor(private store: Store<AppState>) {
-    this.todoItems = store.select(s => s.todoItems);
+  constructor(private store: Store<Immutable.Map<string, Immutable.List<TodoItem>>>) {
+    this.todoItems = store.select(s => s.get('todoItems'));
   }
 
 }

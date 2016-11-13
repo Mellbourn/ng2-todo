@@ -1,6 +1,6 @@
 <div>{{todoItems | async | json}}</div>
 <ol>
-  <li *ngFor="let todoItem of (todoItems | async).todoItems">
+  <li *ngFor="let todoItem of (todoItems | async).get('todoItems')">
     <input type="checkbox" [(ngModel)]="todoItem.done">
     {{todoItem.text}}
     <button (click)="onRemove(todoItem)">Remove</button>
