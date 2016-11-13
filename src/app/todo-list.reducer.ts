@@ -13,13 +13,13 @@ export const todoListReducer: ActionReducer<TodoItem[]> = (state: TodoItem[] = i
     case ADD_TODO_ITEM:
       const itemToAdd: TodoItem = action.payload;
       const newTodoItems = state.concat(itemToAdd);
-      return Object.assign({}, state, { todoItems: newTodoItems });
+      return newTodoItems;
     case REMOVE_TODO_ITEM:
       const itemToRemove: TodoItem = action.payload;
       const indexOfItemToRemove = state.lastIndexOf(itemToRemove);
-      const newArray = state.slice();
-      const splicedArray = newArray.splice(indexOfItemToRemove, 1);
-      return Object.assign({}, state, { todoItems: splicedArray });
+      const splicedArray = state.slice();
+      splicedArray.splice(indexOfItemToRemove, 1);
+      return splicedArray;
     default:
       return state;
   }
