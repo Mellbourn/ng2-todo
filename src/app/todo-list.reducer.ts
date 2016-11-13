@@ -18,8 +18,8 @@ export const todoListReducer: ActionReducer<AppState> = (state: AppState = { tod
     case REMOVE_TODO_ITEM:
       const itemToRemove: TodoItem = action.payload;
       const indexOfItemToRemove = state.todoItems.lastIndexOf(itemToRemove);
-      const newArray = state.todoItems.slice();
-      const splicedArray = newArray.splice(indexOfItemToRemove, 1);
+      const splicedArray = state.todoItems.slice();
+      splicedArray.splice(indexOfItemToRemove, 1);
       return Object.assign({}, state, { todoItems: splicedArray });
     default:
       return state;
