@@ -24,7 +24,7 @@ export class TodoItemEditorComponent implements OnInit {
   }
 
   onSubmit(todoItem: TodoItem): void {
-    this.todoList.getTodoList().push({ text: todoItem.text, done: todoItem.done });
+    this.todoList.addItem(todoItem);
     this.todoItemForm.reset();
   }
 }

@@ -15,6 +15,10 @@ export class TodoListService {
     this.todoItems.splice(indexOfItemToRemove, 1);
   }
 
+  addItem(itemToAdd: TodoItem) {
+    this.todoItems.push({ text: itemToAdd.text, done: itemToAdd.done });
+  }
+
   constructor() {
     this.todoItems = [
       { text: 'create app', done: true },
