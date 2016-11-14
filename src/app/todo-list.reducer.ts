@@ -13,13 +13,15 @@ const initalTodoItems: Immutable.List<TodoItem> = Immutable.List.of(
 const initialState = Immutable.Map({ todoItems: initalTodoItems });
 
 function addTodoItem(state: Immutable.Map<string, any>, itemToAdd: TodoItem): Immutable.Map<string, any> {
-  const extendedTodoItems = state.get('todoItems').push(itemToAdd);
+  const todoItems = state.get('todoItems');
+  const extendedTodoItems = todoItems.push(itemToAdd);
   return state.set('todoItems', extendedTodoItems);
 }
 
 function removeTodoItem(state: Immutable.Map<string, any>, itemToRemove: TodoItem): Immutable.Map<string, any> {
-  const indexOfItemToRemove = state.get('todoItems').lastIndexOf(itemToRemove);
-  const splicedArray = state.get('todoItems').delete(indexOfItemToRemove);
+  const todoItems = state.get('todoItems');
+  const indexOfItemToRemove = todoItems.lastIndexOf(itemToRemove);
+  const splicedArray = todoItems.delete(indexOfItemToRemove);
   return state.set('todoItems', splicedArray);
 }
 
