@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoItem } from '../todo-item';
 import { TodoListService } from '../todo-list.service';
@@ -6,7 +6,8 @@ import { TodoListService } from '../todo-list.service';
 @Component({
   selector: 'app-todo-item-editor',
   templateUrl: './todo-item-editor.component.html',
-  styleUrls: ['./todo-item-editor.component.scss']
+  styleUrls: ['./todo-item-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemEditorComponent implements OnInit {
   todoItemForm: FormGroup;
