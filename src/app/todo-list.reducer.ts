@@ -1,17 +1,17 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import * as Immutable from 'immutable';
+import { List, Map} from 'immutable';
 
 import { TodoItem } from './todo-item';
 import { AppState } from './app-state';
 import { ADD_TODO_ITEM, REMOVE_TODO_ITEM, TOGGLE_ITEM_DONE } from './todo-list.action-creators';
 
-const initalTodoItems: Immutable.List<TodoItem> = Immutable.List.of(
+const initalTodoItems: List<TodoItem> = List.of(
   { text: 'create app', done: true },
   { text: 'upload to github', done: false },
   { text: 'post app on social', done: false }
 );
 
-const initialState: AppState = Immutable.Map({ todoItems: initalTodoItems });
+const initialState: AppState = Map({ todoItems: initalTodoItems });
 
 function addTodoItem(state: AppState, itemToAdd: TodoItem): AppState {
   const todoItems = state.get('todoItems');

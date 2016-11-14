@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TodoItem } from './todo-item';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
-import * as Immutable from 'immutable';
+import { List } from 'immutable';
 
 import { addTodoItem, removeTodoItem, toggleDone } from './todo-list.action-creators';
 import { AppState } from './app-state';
@@ -10,9 +10,9 @@ import { AppState } from './app-state';
 @Injectable()
 export class TodoListService {
 
-  private readonly todoItems: Observable<Immutable.List<TodoItem>>;
+  private readonly todoItems: Observable<List<TodoItem>>;
 
-  getTodoList(): Observable<Immutable.List<TodoItem>> {
+  getTodoList(): Observable<List<TodoItem>> {
     return this.todoItems;
   }
 
@@ -29,7 +29,7 @@ export class TodoListService {
   }
 
   constructor(private store: Store<AppState>) {
-    this.todoItems = <Observable<Immutable.List<TodoItem>>>store.select('todoItems');
+    this.todoItems = <Observable<List<TodoItem>>>store.select('todoItems');
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import * as Immutable from 'immutable';
+import { List } from 'immutable';
 
 import { TodoListService } from '../todo-list.service';
 import { TodoItem } from '../todo-item';
@@ -12,7 +12,7 @@ import { TodoItem } from '../todo-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
-  todoItems: Observable<Immutable.List<TodoItem>>;
+  todoItems: Observable<List<TodoItem>>;
 
   constructor(private todoListService: TodoListService) { }
 

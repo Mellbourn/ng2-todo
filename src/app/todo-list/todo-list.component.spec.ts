@@ -10,7 +10,7 @@ import { TodoItem } from '../todo-item';
 
 describe('Component: TodoList', () => {
   let todoListServiceMock: TodoListService;
-  let todoList: Immutable.List<TodoItem>;
+  let todoList: List<TodoItem>;
 
   beforeEach(() => {
     todoListServiceMock = jasmine.createSpyObj('TodoListService', ['getTodoList', 'removeItem']);
