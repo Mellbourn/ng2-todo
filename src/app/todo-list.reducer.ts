@@ -20,14 +20,14 @@ function addTodoItem(state: Immutable.Map<string, any>, itemToAdd: TodoItem): Im
 
 function removeTodoItem(state: Immutable.Map<string, any>, itemToRemove: TodoItem): Immutable.Map<string, any> {
   const todoItems = state.get('todoItems');
-  const indexOfItemToRemove = todoItems.lastIndexOf(itemToRemove);
+  const indexOfItemToRemove = todoItems.indexOf(itemToRemove);
   const splicedArray = todoItems.delete(indexOfItemToRemove);
   return state.set('todoItems', splicedArray);
 }
 
 function toggleItemDone(state: Immutable.Map<string, any>, itemToToggle: TodoItem): Immutable.Map<string, any> {
   const todoItems = state.get('todoItems');
-  const indexOfItemToToggle = todoItems.lastIndexOf(itemToToggle);
+  const indexOfItemToToggle = todoItems.indexOf(itemToToggle);
   const toggledItem = { text: itemToToggle.text, done: !itemToToggle.done };
   const newTodoItems = todoItems.set(indexOfItemToToggle, toggledItem);
   return state.set('todoItems', newTodoItems);
