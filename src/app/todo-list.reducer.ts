@@ -13,7 +13,8 @@ const initalTodoItems: List<TodoItem> = List.of(
 
 const initialState: AppState = Map({ todoItems: initalTodoItems });
 
-function addTodoItem(state: AppState, itemToAdd: TodoItem): AppState {
+function addTodoItem(state: AppState, payload: any): AppState {
+  const itemToAdd: TodoItem = new TodoItem(payload);
   const todoItems = state.get('todoItems');
   const extendedTodoItems = todoItems.push(itemToAdd);
   return state.set('todoItems', extendedTodoItems);
