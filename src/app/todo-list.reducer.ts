@@ -6,9 +6,9 @@ import { AppState } from './app-state';
 import { ADD_TODO_ITEM, REMOVE_TODO_ITEM, TOGGLE_ITEM_DONE } from './todo-list.action-creators';
 
 const initalTodoItems: List<TodoItem> = List.of(
-  { text: 'create app', done: true },
-  { text: 'upload to github', done: false },
-  { text: 'post app on social', done: false }
+  new TodoItem({ text: 'create app', done: true }),
+  new TodoItem({ text: 'upload to github', done: false }),
+  new TodoItem({ text: 'post app on social', done: false })
 );
 
 const initialState: AppState = Map({ todoItems: initalTodoItems });
@@ -29,7 +29,7 @@ function removeTodoItem(state: AppState, itemToRemove: TodoItem): AppState {
 function toggleItemDone(state: AppState, itemToToggle: TodoItem): AppState {
   const todoItems = state.get('todoItems');
   const indexOfItemToToggle = todoItems.indexOf(itemToToggle);
-  const toggledItem = { text: itemToToggle.text, done: !itemToToggle.done };
+  const toggledItem = itemToToggle.set('done', !itemToToggle.get('done'));
   const newTodoItems = todoItems.set(indexOfItemToToggle, toggledItem);
   return state.set('todoItems', newTodoItems);
 }
