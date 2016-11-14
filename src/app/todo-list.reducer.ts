@@ -2,6 +2,7 @@ import { ActionReducer, Action } from '@ngrx/store';
 import * as Immutable from 'immutable';
 
 import { TodoItem } from './todo-item';
+import { AppState } from './app-state';
 import { ADD_TODO_ITEM, REMOVE_TODO_ITEM, TOGGLE_ITEM_DONE } from './todo-list.action-creators';
 
 const initalTodoItems: Immutable.List<TodoItem> = Immutable.List.of(
@@ -10,22 +11,22 @@ const initalTodoItems: Immutable.List<TodoItem> = Immutable.List.of(
   { text: 'post app on social', done: false }
 );
 
-const initialState = Immutable.Map({ todoItems: initalTodoItems });
+const initialState: AppState = Immutable.Map({ todoItems: initalTodoItems });
 
-function addTodoItem(state: Immutable.Map<string, any>, itemToAdd: TodoItem): Immutable.Map<string, any> {
+function addTodoItem(state: AppState, itemToAdd: TodoItem): AppState {
   const todoItems = state.get('todoItems');
   const extendedTodoItems = todoItems.push(itemToAdd);
   return state.set('todoItems', extendedTodoItems);
 }
 
-function removeTodoItem(state: Immutable.Map<string, any>, itemToRemove: TodoItem): Immutable.Map<string, any> {
+function removeTodoItem(state: AppState, itemToRemove: TodoItem): AppState {
   const todoItems = state.get('todoItems');
   const indexOfItemToRemove = todoItems.indexOf(itemToRemove);
   const splicedArray = todoItems.delete(indexOfItemToRemove);
   return state.set('todoItems', splicedArray);
 }
 
-function toggleItemDone(state: Immutable.Map<string, any>, itemToToggle: TodoItem): Immutable.Map<string, any> {
+function toggleItemDone(state: AppState, itemToToggle: TodoItem): AppState {
   const todoItems = state.get('todoItems');
   const indexOfItemToToggle = todoItems.indexOf(itemToToggle);
   const toggledItem = { text: itemToToggle.text, done: !itemToToggle.done };
@@ -33,7 +34,7 @@ function toggleItemDone(state: Immutable.Map<string, any>, itemToToggle: TodoIte
   return state.set('todoItems', newTodoItems);
 }
 
-export const todoListReducer: ActionReducer<Immutable.Map<string, any>> =
+export const todoListReducer: ActionReducer<AppState> =
   (state = initialState, action: Action) => {
     switch (action.type) {
 
