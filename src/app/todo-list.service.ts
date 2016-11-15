@@ -17,7 +17,7 @@ export class TodoListService {
   private readonly state: Observable<AppState>;
 
   getTodoItemsState(state$: Observable<any>) {
-    return state$.select(state => state.todoItems);
+    return state$.select(state => state.todos);
   }
 
   getTodoList(): Observable<List<TodoItem>> {
