@@ -1,8 +1,1 @@
-<h3>new item</h3>
-<form [formGroup]="todoItemForm" (ngSubmit)="onSubmit(todoItemForm.value)">
-  <label for="doneCheckBox">Done</label>
-  <input type="checkbox" id="doneCheckBox" formControlName="done">
-  <label for="textInput">Text:</label>
-  <input type="text" id="textInput" formControlName="text" placeholder="description of your todo item">
-  <button type="submit" [disabled]="!todoItemForm.valid">Add</button>
-</form>
+<input class="new-todo" placeholder="What needs to be done?" autofocus [(ngModel)]="text" (keydown.enter)="onSubmit()">

@@ -1,5 +1,3 @@
-<div>{{todoItems | async | json}}</div>
-
 <section class="main">
   <input class="toggle-all" type="checkbox">
   <label for="toggle-all">Mark all as complete</label>
@@ -36,4 +34,4 @@
   <button class="clear-completed">Clear completed</button>
 </footer>
 
-<app-todo-item-editor></app-todo-item-editor>
+<div>debug: {{todoItems | async | json}}</div>

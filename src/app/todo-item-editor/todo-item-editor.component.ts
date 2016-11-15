@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoItem } from '../todo-item';
 import { TodoListService } from '../todo-list.service';
 
@@ -10,22 +9,17 @@ import { TodoListService } from '../todo-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemEditorComponent implements OnInit {
-  todoItemForm: FormGroup;
+  public text: string;
 
   constructor(
-    private fb: FormBuilder,
     private todoList: TodoListService) {
   }
 
   ngOnInit() {
-    this.todoItemForm = this.fb.group({
-      text: ['', Validators.required],
-      done: [false]
-    });
   }
 
-  onSubmit(todoItem: TodoItem): void {
-    this.todoList.addItem(todoItem);
-    this.todoItemForm.reset();
+  onSubmit(): void {
+    this.todoList.addItem(new TodoItem({text: this.text}));
+    this.text = '';
   }
 }
