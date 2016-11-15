@@ -14,18 +14,12 @@ import { AppState } from './app-state';
 @Injectable()
 export class TodoListService {
 
-  private readonly state: Observable<AppState>;
-
-  getTodoItemsState(state$: Observable<any>) {
-    return state$.select(state => state.todos);
-  }
-
   getTodoList(): Observable<List<TodoItem>> {
-    return this.state.map(s => s.get('todoItems'));
+    return this.store.map(s => s.get('todoItems'));
   }
 
   getItemsLeft(): Observable<number> {
-    return this.state.map(s => s.get('todoItems').filter(i => !i.done).count());
+    return this.store.map(s => s.get('todoItems').filter(i => !i.done).count());
   }
 
   removeItem(itemToRemove: TodoItem) {
@@ -41,6 +35,5 @@ export class TodoListService {
   }
 
   constructor(private store: Store<AppState>) {
-    this.state = this.store.let(this.getTodoItemsState);
   }
 }

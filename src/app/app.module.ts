@@ -22,7 +22,7 @@ import { TodoItemEditorComponent } from './todo-item-editor/todo-item-editor.com
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    StoreModule.provideStore({ todos: todoListReducer }),
+    StoreModule.provideStore(todoListReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [
