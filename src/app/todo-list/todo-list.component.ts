@@ -13,11 +13,13 @@ import { TodoItem } from '../todo-item';
 })
 export class TodoListComponent implements OnInit {
   todoItems: Observable<List<TodoItem>>;
+  itemsLeft: Observable<number>;
 
   constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
     this.todoItems = this.todoListService.getTodoList();
+    this.itemsLeft = this.todoListService.getItemsLeft();
   }
 
   onRemove(itemToRemove: TodoItem) {

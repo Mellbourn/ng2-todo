@@ -6,32 +6,20 @@
   <ul class="todo-list">
     <!-- These are here just to show the structure of the list items -->
     <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-    <li *ngFor="let todoItem of (todoItems | async).get('todoItems')">
-      <input type="checkbox" [ngModel]="todoItem.done" (click)="toggleDone(todoItem, $event)"> {{todoItem.text}}
-      <button (click)="onRemove(todoItem)">Remove</button>
-    </li>
-    <li class="completed">
+    <li *ngFor="let todoItem of (todoItems | async).get('todoItems')" [class.completed]="todoItem.done">
       <div class="view">
-        <input class="toggle" type="checkbox" checked>
-        <label>Taste JavaScript</label>
-        <button class="destroy"></button>
+        <input type="checkbox" class="toggle" [ngModel]="todoItem.done" (click)="toggleDone(todoItem, $event)">
+        <label>{{todoItem.text}}</label>
+        <button class="destroy" (click)="onRemove(todoItem)"></button>
       </div>
-      <input class="edit" value="Create a TodoMVC template">
-    </li>
-    <li>
-      <div class="view">
-        <input class="toggle" type="checkbox">
-        <label>Buy a unicorn</label>
-        <button class="destroy"></button>
-      </div>
-      <input class="edit" value="Rule the web">
+      <input class="edit" value="{{todoItem.text}}">
     </li>
   </ul>
 </section>
 <!-- This footer should hidden by default and shown when there are todos -->
 <footer class="footer">
   <!-- This should be `0 items left` by default -->
-  <span class="todo-count"><strong>0</strong> item left</span>
+  <span class="todo-count"><strong>{{itemsLeft | async}}</strong> item left</span>
   <!-- Remove this if you don't implement routing -->
   <ul class="filters">
     <li>
