@@ -19,7 +19,10 @@ export class TodoItemEditorComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.todoList.addItem(new TodoItem({text: this.text}));
+    if (!this.text) {
+      return;
+    };
+    this.todoList.addItem(new TodoItem({ text: this.text }));
     this.text = '';
   }
 }
