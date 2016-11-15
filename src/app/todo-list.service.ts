@@ -37,6 +37,6 @@ export class TodoListService {
   }
 
   constructor(private store: Store<any>) {
-    this.state = <any>store.select('todos');
+    this.state = <Store<AppState>>store.select('todos');
   }
 }

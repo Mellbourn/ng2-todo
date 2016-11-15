@@ -1,5 +1,5 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { List, Map} from 'immutable';
+import { List, Map } from 'immutable';
 
 import { TodoItem } from './todo-item';
 import { AppState } from './app-state';
@@ -15,23 +15,25 @@ const initialState: AppState = Map({ todoItems: initalTodoItems });
 
 function addTodoItem(state: AppState, payload: TodoItem): AppState {
   const itemToAdd: TodoItem = payload;
-  const todoItems = state.get('todoItems');
+  const todoItems: List<TodoItem> = state.get('todoItems');
   const extendedTodoItems = todoItems.push(itemToAdd);
   return state.set('todoItems', extendedTodoItems);
 }
 
 function removeTodoItem(state: AppState, itemToRemove: TodoItem): AppState {
-  const todoItems = state.get('todoItems');
-  const indexOfItemToRemove = todoItems.indexOf(itemToRemove);
-  const splicedArray = todoItems.delete(indexOfItemToRemove);
-  return state.set('todoItems', splicedArray);
+  const todoItems: List<TodoItem> = state.get('todoItems');
+  const filteredTodoList = todoItems.filter(item => item !== itemToRemove);
+  return state.set('todoItems', filteredTodoList);
 }
 
 function toggleItemDone(state: AppState, itemToToggle: TodoItem): AppState {
-  const todoItems = state.get('todoItems');
-  const indexOfItemToToggle = todoItems.indexOf(itemToToggle);
-  const toggledItem = itemToToggle.set('done', !itemToToggle.get('done'));
-  const newTodoItems = todoItems.set(indexOfItemToToggle, toggledItem);
+  const todoItems: List<TodoItem> = state.get('todoItems');
+  const newTodoItems = todoItems.map(todo => {
+    if (todo === itemToToggle) {
+      return todo.set('done', !itemToToggle.get('done'));
+    }
+    return todo;
+  });
   return state.set('todoItems', newTodoItems);
 }
 
