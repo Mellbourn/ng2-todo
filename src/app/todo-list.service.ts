@@ -14,26 +14,29 @@ import { AppState } from './app-state';
 @Injectable()
 export class TodoListService {
 
+  private state: Store<AppState>;
+
   getTodoList(): Observable<List<TodoItem>> {
-    return this.store.map(s => s.get('todoItems'));
+    return this.state.map(s => s.get('todoItems'));
   }
 
   getItemsLeft(): Observable<number> {
-    return this.store.map(s => s.get('todoItems').filter(i => !i.done).count());
+    return this.state.map(s => s.get('todoItems').filter(i => !i.done).count());
   }
 
   removeItem(itemToRemove: TodoItem) {
-    this.store.dispatch(removeTodoItem(itemToRemove));
+    this.state.dispatch(removeTodoItem(itemToRemove));
   }
 
   addItem(itemToAdd: TodoItem) {
-    this.store.dispatch(addTodoItem(itemToAdd));
+    this.state.dispatch(addTodoItem(itemToAdd));
   }
 
   toggleDone(itemToToggle: TodoItem) {
-    this.store.dispatch(toggleDone(itemToToggle));
+    this.state.dispatch(toggleDone(itemToToggle));
   }
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<any>) {
+    this.state = <any>store.select('todos');
   }
 }
