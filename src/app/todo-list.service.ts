@@ -25,7 +25,7 @@ export class TodoListService {
   }
 
   getItemsLeft(): Observable<number> {
-    return this.todoItems.map(items => items.count(i => !i.get('done')));
+    return this.todoItems.map(items => items.count(i => !i.done));
   }
 
   removeItem(itemToRemove: TodoItem) {

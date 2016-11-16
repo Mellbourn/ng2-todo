@@ -30,7 +30,7 @@ function toggleItemDone(state: AppState, itemToToggle: TodoItem): AppState {
   const todoItems: List<TodoItem> = state.get('todoItems');
   const newTodoItems = todoItems.map(todo => {
     if (todo === itemToToggle) {
-      return todo.set('done', !itemToToggle.get('done'));
+      return todo.set('done', !itemToToggle.done);
     }
     return todo;
   });
