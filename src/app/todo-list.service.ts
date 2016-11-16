@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/count';
 import 'rxjs/add/operator/let';
 import '@ngrx/core/add/operator/select';
 import { List } from 'immutable';
@@ -14,29 +16,32 @@ import { AppState } from './app-state';
 @Injectable()
 export class TodoListService {
 
-  private state: Store<AppState>;
+  private todoStore: Store<AppState>;
+
+  private todoItems: Observable<List<TodoItem>>;
 
   getTodoList(): Observable<List<TodoItem>> {
-    return this.state.map(s => s.get('todoItems'));
+    return this.todoItems;
   }
 
   getItemsLeft(): Observable<number> {
-    return this.state.map(s => s.get('todoItems').filter(i => !i.done).count());
+    return this.todoItems.map(items => items.count(i => !i.get('done')));
   }
 
   removeItem(itemToRemove: TodoItem) {
-    this.state.dispatch(removeTodoItem(itemToRemove));
+    this.todoStore.dispatch(removeTodoItem(itemToRemove));
   }
 
   addItem(itemToAdd: TodoItem) {
-    this.state.dispatch(addTodoItem(itemToAdd));
+    this.todoStore.dispatch(addTodoItem(itemToAdd));
   }
 
   toggleDone(itemToToggle: TodoItem) {
-    this.state.dispatch(toggleDone(itemToToggle));
+    this.todoStore.dispatch(toggleDone(itemToToggle));
   }
 
   constructor(private store: Store<any>) {
-    this.state = <Store<AppState>>store.select('todos');
+    this.todoStore = <Store<AppState>>store.select('todos');
+    this.todoItems = this.todoStore.map(s => s.get('todoItems'));
   }
 }
